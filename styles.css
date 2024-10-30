@@ -21,3 +21,9 @@ form {
 input:invalid {
   border: 2px solid red;
 }
+
+form p {
+  margin: 0px;
+  position: absolute;
+  background-color: red;
+}
