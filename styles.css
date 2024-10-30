@@ -17,3 +17,7 @@ form {
   align-items: center;
   justify-content: start;
 }
+
+input:invalid {
+  border: 2px solid red;
+}
