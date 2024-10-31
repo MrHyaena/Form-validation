@@ -15,7 +15,7 @@ const passContP = document.querySelector("#passContP");
 
 email.required = true;
 
-email.addEventListener("focusout", (event) => {
+email.addEventListener("focusout", () => {
   if (email.validity.typeMismatch) {
     email.setCustomValidity("You need to enter an email address.");
     emailS.textContent = "Enter the email in correct form";
@@ -25,22 +25,48 @@ email.addEventListener("focusout", (event) => {
   }
 });
 
-country.addEventListener("focusout", (event) => {
+country.required = true;
+country.addEventListener("focusout", () => {
   if (country.validity.valueMissing) {
-    country.setCustomValidity("");
-    countryP.textContent = "";
-  } else {
     country.setCustomValidity("Enter your country");
     countryP.textContent = "Enter your country";
+  } else {
+    country.setCustomValidity("");
+    countryP.textContent = "";
   }
 });
 
-zip.addEventListener("focusout", (event) => {
+zip.setAttribute("pattern", "[0-9]{5}");
+zip.required = true;
+zip.addEventListener("focusout", () => {
   if (zip.validity.patternMismatch) {
-    zip.setCustomValidity("Enter your country");
-    zip.textContent = "Enter your country";
+    zip.setCustomValidity("Enter 5-digit code");
+    zipP.textContent = "Enter 5-digit code";
   } else {
     zip.setCustomValidity("");
-    zip.textContent = "";
+    zipP.textContent = "";
+  }
+});
+
+pass.setAttribute("pattern", "(?=.*[a-z])(?=.*[A-Z])(?=.*[0-9]).{5,}");
+pass.required = true;
+pass.addEventListener("focusout", () => {
+  if (pass.validity.patternMismatch) {
+    pass.setCustomValidity("Add necessary symbol");
+    passP.textContent = "Add necessary symbol";
+  } else {
+    pass.setCustomValidity("");
+    passP.textContent = "";
+  }
+});
+
+passCont.required = true;
+passCont.addEventListener("focusout", () => {
+  if (passCont.value == pass.value) {
+    passCont.setCustomValidity("");
+    passContP.textContent = "";
+  } else {
+    passCont.setCustomValidity("Add necessary symbol");
+    passContP.textContent = "Add necessary symbol";
   }
 });
